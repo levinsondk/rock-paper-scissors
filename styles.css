@@ -14,3 +14,9 @@ html body {
 	padding-bottom: 2.5rem; /* Reduce padding */
 	box-sizing: border-box; /* Include padding in height calculation */
 }
+
+code {
+	background-color: rgb(237, 237, 237);
+	padding: .25rem;
+	border-radius: .5em;
+}
