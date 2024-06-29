@@ -25,12 +25,25 @@ function chooseRandomOption() {
   return choice;
 }
 
+function promptUser(instrucitons, placeholder = chooseRandomOption()) {
+  let input;
+  input = prompt(instrucitons, placeholder).trim().toLowerCase();
+  let choice = input.charAt(0).toUpperCase() + input.slice(1);
+  return choice;
+}
+
 function getUserChoice() {
   let choice;
-  choice = prompt("Choose: Rock, Paper or Scissors", chooseRandomOption())
-    .trim()
-    .toLowerCase();
-  return choice.charAt(0).toUpperCase() + choice.slice(1);
+  let isCorrect = false;
+  while (!isCorrect) {
+    choice = promptUser("Choose Rock, Paper or Scissors");
+    if (options.includes(choice)) {
+      isCorrect = true;
+      return choice;
+    } else {
+			alert("This won't do! Please try again.")
+    }
+  }
 }
 
 function defineRoundWinner(userChoice, computerChoice) {
