@@ -15,6 +15,7 @@
 // 	If not, continue to the next round.
 // 	If yes, declare the game winner and reset the score.
 
+
 const options = ["Rock", "Paper", "Scissors"];
 let userScore = 0;
 let computerScore = 0;
@@ -70,12 +71,12 @@ function playRound() {
 
   const winner = defineRoundWinner(userChoice, computerChoice);
   if (winner === "user") {
+		userScore++;
     console.log(`${userChoice} beats ${computerChoice}`);
-    userScore++;
     console.log("You won the round! 🎉");
   } else if (winner === "computer") {
+		computerScore++;
     console.log(`${computerChoice} beats ${userChoice}`);
-    computerScore++;
     console.log("You lose the round! 🥲");
   } else if (winner === "tie") {
     console.log("it's a tie! 🤝");
