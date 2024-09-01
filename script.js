@@ -13,6 +13,9 @@ const choises = Array.from(choisesBtnGroup).map((button) => button.id);
 
 let playerScore = 0;
 let cpuScore = 0;
+const defaultChoiseSize = "4rem";
+const winnerChoiseSize = "5rem";
+const loserChoiseSize = "3rem";
 
 function chooseRandom(choises) {
   const index = Math.floor(Math.random() * choises.length);
@@ -20,8 +23,22 @@ function chooseRandom(choises) {
   return choise;
 }
 
+function setIconSize(roundWinner) {
+  if (roundWinner === "player") {
+    playerChoiseIcon.style.fontSize = winnerChoiseSize;
+    cpuChoiseIcon.style.fontSize = loserChoiseSize;
+  } else if (roundWinner === "cpu") {
+    cpuChoiseIcon.style.fontSize = winnerChoiseSize;
+    playerChoiseIcon.style.fontSize = loserChoiseSize;
+  } else {
+    playerChoiseIcon.style.fontSize = defaultChoiseSize;
+    cpuChoiseIcon.style.fontSize = defaultChoiseSize;
+  }
+}
+
 function assignScore(playerChoise, cpuChoise) {
   if (playerChoise === cpuChoise) {
+    setIconSize();
     return;
   } else if (
     (playerChoise === "R" && cpuChoise === "S") ||
@@ -29,12 +46,14 @@ function assignScore(playerChoise, cpuChoise) {
     (playerChoise === "S" && cpuChoise === "P")
   ) {
     playerScore++;
+    setIconSize("player");
   } else {
     cpuScore++;
+    setIconSize("cpu");
   }
 }
 
-function updateChoisesDOM(player, cpu) {
+function updateChoiseIcons(player, cpu) {
   playerChoiseIcon.remove();
   cpuChoiseIcon.remove();
 
@@ -54,7 +73,7 @@ function updateScoreDOM(player, cpu) {
 function takeTurn(playerChoice) {
   const cpuChoice = chooseRandom(choises);
   assignScore(playerChoice, cpuChoice);
-  updateChoisesDOM(playerChoice, cpuChoice);
+  updateChoiseIcons(playerChoice, cpuChoice);
   updateScoreDOM(playerScore, cpuScore);
 
   if (playerScore === 5 || cpuScore === 5) {
@@ -73,6 +92,7 @@ function endGame() {
 function resetGame() {
   playerScore = 0;
   cpuScore = 0;
+  setIconSize();
   updateScoreDOM(playerScore, cpuScore);
   divGameResult.textContent = "";
   playerChoiseIcon.textContent = "-";

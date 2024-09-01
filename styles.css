@@ -15,12 +15,22 @@ html body {
 	box-sizing: border-box; /* Include padding in height calculation */
 }
 
-.choises {
+.choise-icons {
 	display: flex;
-	min-height: 6rem;
+	height: 6.5rem;
 	gap: 1rem;
 	font-size: 4rem;
+	align-items: baseline;
 }
+
+.winnerIcon {
+	font-size: 5rem;
+}
+
+.loserIcon {
+	font-size: 3rem;
+}
+
 
 #player-choise > .choise-icon {
 	display: inline-block;
